@@ -25,7 +25,7 @@ def generate_supersets(N, X, V, df):
     # generate les combinations possibles de variables dans V, 
     # de leur valeur dans df pour un identifiant N, à partir de la cardinalité de X
 	candidat = df[df['N_candidat']==N]
-	supersets = [{}]
+	supersets = [X]
 	for var in V:
 		valeur = candidat[var].iloc[0]
 		copie = copy.deepcopy(supersets)
