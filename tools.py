@@ -19,7 +19,7 @@ def med(S1, S2, S3, S4, S5, Logique, BDD, PS, coeffs=coeffs, seuils=seuils, thre
         d='L'
     else:
         d='R'
-    return d
+    return m, e,d
 
 def generate_supersets(N, X, V, df):
     # generate les combinations possibles de variables dans V, 
