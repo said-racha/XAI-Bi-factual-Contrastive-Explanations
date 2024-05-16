@@ -1,6 +1,22 @@
-# VERSION AHMED
-def AC2_beta_minChanges3(N_candidat, X, decision, df=df):
-    candidat=df[df.N_candidat==N_candidat].copy()
+# VERSION specifique à MonMaster
+from itertools import product
+coeffs= [1, 1, 1, 1, 1] #calcul de la Moyenne
+seuils = [12, 12, 12] # Calcul du status d'éligibilité (logique, BDD, PS)
+thresholds = [12, 14] # prendre la décision
+def med(S1, S2, S3, S4, S5, Logique, BDD, PS, coeffs=coeffs, seuils=seuils, thresholds2=thresholds):
+    #la fonction qui calcule M E D pour un candidat (valeurs discrétisées)
+    moyenne = (S1 * coeffs[0] + S2 * coeffs[1] + S3 * coeffs[2] + S4 * coeffs[3] + S5 * coeffs[4]) / sum(coeffs)
+    e = (Logique*BDD*PS==1)
+    m = (moyenne>thresholds2[1])*2 + (thresholds2[0] <= moyenne <= thresholds2[1])
+    if e and m==2:
+        d= 'A'
+    elif e and m==1:
+        d='L'
+    else:
+        d='R'
+    return m,e,d
+def AC2_beta_minChanges(N_candidat, X, decision, df=None):
+    candidat=df[df.id==N_candidat].copy()
     if (len(candidat)==0):
         return False
 
